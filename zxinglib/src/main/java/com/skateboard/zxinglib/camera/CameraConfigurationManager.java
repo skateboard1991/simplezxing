@@ -26,7 +26,7 @@ import android.view.Display;
 import android.view.Surface;
 import android.view.WindowManager;
 
-import com.google.zxing.client.android.camera.CameraConfigurationUtils;
+import com.skateboard.zxinglib.camera.CameraConfigurationUtils;
 import com.skateboard.zxinglib.PreferencesActivity;
 import com.skateboard.zxinglib.camera.open.CameraFacing;
 import com.skateboard.zxinglib.camera.open.OpenCamera;
