@@ -35,7 +35,7 @@ final class AutoFocusManager implements Camera.AutoFocusCallback {
 
   private static final String TAG = AutoFocusManager.class.getSimpleName();
 
-  private static final long AUTO_FOCUS_INTERVAL_MS = 2000L;
+  private static final long AUTO_FOCUS_INTERVAL_MS = 200L;
   private static final Collection<String> FOCUS_MODES_CALLING_AF;
   static {
     FOCUS_MODES_CALLING_AF = new ArrayList<>(2);
@@ -70,7 +70,7 @@ final class AutoFocusManager implements Camera.AutoFocusCallback {
     if (!stopped && outstandingTask == null) {
       AutoFocusTask newTask = new AutoFocusTask();
       try {
-        newTask.execute();
+        newTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         outstandingTask = newTask;
       } catch (RejectedExecutionException ree) {
         Log.w(TAG, "Could not request auto focus", ree);
