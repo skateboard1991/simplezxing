@@ -258,8 +258,9 @@ public final class CameraConfigurationUtils
         }
     }
 
-    public static Point findBestPreviewSizeValue(Camera.Parameters parameters, Point screenResolution) {
-
+    public static Point findBestPreviewSizeValue(Camera.Parameters parameters,
+                                           Point screenResolution)
+    {
         List<Camera.Size> rawSupportedSizes = parameters.getSupportedPreviewSizes();
         if (rawSupportedSizes == null) {
             Log.w(TAG, "Device returned no supported preview sizes; using default");
@@ -296,16 +297,7 @@ public final class CameraConfigurationUtils
             Log.i(TAG, "Supported preview sizes: " + previewSizesString);
         }
 
-        double screenAspectRatio=0f;
-
-        if(screenResolution.x>screenResolution.y)
-        {
-            screenAspectRatio = screenResolution.x / (double) screenResolution.y;
-        }
-        else
-        {
-            screenAspectRatio = screenResolution.y / (double) screenResolution.x;
-        }
+        double screenAspectRatio = screenResolution.x>screenResolution.y?screenResolution.x / (double) screenResolution.y:screenResolution.y / (double) screenResolution.x;
 
         // Remove sizes that are unsuitable
         Iterator<Camera.Size> it = supportedPreviewSizes.iterator();
@@ -354,7 +346,6 @@ public final class CameraConfigurationUtils
         Log.i(TAG, "No suitable preview sizes, using default: " + defaultSize);
         return defaultSize;
     }
-
     private static String findSettableValue(String name,
                                             Collection<String> supportedValues,
                                             String... desiredValues) {

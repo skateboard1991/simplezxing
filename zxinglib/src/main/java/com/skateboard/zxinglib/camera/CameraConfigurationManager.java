@@ -94,19 +94,6 @@ final class CameraConfigurationManager {
       Log.i(TAG, "Front camera overriden to: " + cwRotationFromNaturalToCamera);
     }
 
-    /*
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-    String overrideRotationString;
-    if (camera.getFacing() == CameraFacing.FRONT) {
-      overrideRotationString = prefs.getString(PreferencesActivity.KEY_FORCE_CAMERA_ORIENTATION_FRONT, null);
-    } else {
-      overrideRotationString = prefs.getString(PreferencesActivity.KEY_FORCE_CAMERA_ORIENTATION, null);
-    }
-    if (overrideRotationString != null && !"-".equals(overrideRotationString)) {
-      Log.i(TAG, "Overriding camera manually to " + overrideRotationString);
-      cwRotationFromNaturalToCamera = Integer.parseInt(overrideRotationString);
-    }
-     */
 
     cwRotationFromDisplayToCamera =
         (360 + cwRotationFromNaturalToCamera - cwRotationFromNaturalToDisplay) % 360;
@@ -123,20 +110,20 @@ final class CameraConfigurationManager {
     display.getSize(theScreenResolution);
     screenResolution = theScreenResolution;
     Log.i(TAG, "Screen resolution in current orientation: " + screenResolution);
-    cameraResolution = CameraConfigurationUtils.findBestPreviewSizeValue(parameters, screenResolution);
-    Log.i(TAG, "Camera resolution: " + cameraResolution);
+//    cameraResolution = CameraConfigurationUtils.findBestPreviewSizeValue(parameters, screenResolution);
+//    Log.i(TAG, "Camera resolution: " + cameraResolution);
     bestPreviewSize = CameraConfigurationUtils.findBestPreviewSizeValue(parameters, screenResolution);
     Log.i(TAG, "Best available preview size: " + bestPreviewSize);
-
-    boolean isScreenPortrait = screenResolution.x < screenResolution.y;
-    boolean isPreviewSizePortrait = bestPreviewSize.x < bestPreviewSize.y;
-
-    if (isScreenPortrait == isPreviewSizePortrait) {
-      previewSizeOnScreen = bestPreviewSize;
-    } else {
-      previewSizeOnScreen = new Point(bestPreviewSize.y, bestPreviewSize.x);
-    }
-    Log.i(TAG, "Preview size on screen: " + previewSizeOnScreen);
+//
+//    boolean isScreenPortrait = screenResolution.x < screenResolution.y;
+//    boolean isPreviewSizePortrait = bestPreviewSize.x < bestPreviewSize.y;
+//
+//    if (isScreenPortrait == isPreviewSizePortrait) {
+//      previewSizeOnScreen = bestPreviewSize;
+//    } else {
+//      previewSizeOnScreen = new Point(bestPreviewSize.y, bestPreviewSize.x);
+//    }
+//    Log.i(TAG, "Preview size on screen: " + previewSizeOnScreen);
   }
 
   void setDesiredCameraParameters(OpenCamera camera, boolean safeMode) {
@@ -180,8 +167,6 @@ final class CameraConfigurationManager {
         CameraConfigurationUtils.setMetering(parameters);
       }
 
-      //SetRecordingHint to true also a workaround for low framerate on Nexus 4
-      //https://stackoverflow.com/questions/14131900/extreme-camera-lag-on-nexus-4
       parameters.setRecordingHint(true);
 
     }
@@ -211,7 +196,7 @@ final class CameraConfigurationManager {
   }
 
   Point getCameraResolution() {
-    return cameraResolution;
+    return bestPreviewSize;
   }
 
   Point getScreenResolution() {
