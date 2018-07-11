@@ -32,7 +32,7 @@ import java.io.IOException;
 /**
  * Manages beeps and vibrations for {@link CaptureActivity}.
  */
-final class BeepManager implements MediaPlayer.OnErrorListener, Closeable {
+public final class BeepManager implements MediaPlayer.OnErrorListener, Closeable {
 
   private static final String TAG = BeepManager.class.getSimpleName();
 
