@@ -34,7 +34,7 @@ import com.skateboard.zxinglib.camera.FrontLightMode;
  * @author Sean Owen
  * @author Nikolaus Huber
  */
-public final class AmbientLightManager implements SensorEventListener {
+final class AmbientLightManager implements SensorEventListener {
 
   private static final float TOO_DARK_LUX = 45.0f;
   private static final float BRIGHT_ENOUGH_LUX = 450.0f;

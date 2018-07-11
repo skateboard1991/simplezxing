@@ -30,7 +30,7 @@ import java.util.concurrent.RejectedExecutionException;
 /**
  * Finishes an activity after a period of inactivity if the device is on battery power.
  */
-public final class InactivityTimer {
+final class InactivityTimer {
 
   private static final String TAG = InactivityTimer.class.getSimpleName();
 
